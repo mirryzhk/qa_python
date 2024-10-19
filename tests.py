@@ -34,3 +34,12 @@ class TestBooksCollector:
         assert collector.get_book_genre(new_book_name) == ''
         collector.set_book_genre(new_book_name, 'Мультфильмы')
         assert collector.get_book_genre(new_book_name) == 'Мультфильмы'
+
+    def test_get_books_with_specific_genre(self):
+        # Тест
+        collector = BooksCollector()
+        for i in range(1, 11):
+            book_name = f'book_{i}'
+            collector.add_new_book(book_name)
+            collector.set_book_genre(book_name,'Ужасы')
+        assert collector.get_books_with_specific_genre('Ужасы') == [f'book_{i}' for i in range(1, 11)]
